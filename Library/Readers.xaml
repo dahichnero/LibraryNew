@@ -1,0 +1,71 @@
+﻿<Window x:Class="Library.Readers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="Readers" Style="{StaticResource AnotherWindows}" WindowStartupLocation="CenterScreen" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="./Images/pngegg.png" Width="103" Height="81" Grid.Row="0" Grid.Column="0" Margin="0 0 80 0"></Image>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 30 0 0">
+            <Button Click="back" Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Назад"></Button>
+            <Button Click="close" Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Выход"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Style="{StaticResource Header}" Margin="70 0 0 5">Читатели</Label>
+            <StackPanel Style="{StaticResource MenuUp}" >
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <Label>Поиск:</Label>
+                    <TextBox x:Name="searchTextBox" Style="{StaticResource MenuSearch}" TextChanged="search"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Readers_}" x:Name="allReaders">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#F8F8FF" Margin="0 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="375" />
+                            <ColumnDefinition Width="127"/>
+                            <ColumnDefinition Width="189" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="7" Grid.Column="0">
+                            <TextBlock FontSize="16" TextWrapping="Wrap" >
+                        Фамилия: <Run Text="{Binding LastName}"/>
+                        <LineBreak />
+                        Имя: <Run Text="{Binding ReaderName}"/> 
+                        <LineBreak />
+                        Отчество: <Run Text="{Binding SurName}"/>
+                        <LineBreak/>
+                        Почта: <Run Text="{Binding ReaderEmail}"/>
+                                Телефон: <Run Text="{Binding Phone}"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="2"   VerticalAlignment="Top">
+                            <Button Style="{StaticResource Help}" Margin="90 0 0 0" Click="change">
+                                <Image Source="./Images/change.png"/>
+                            </Button>
+                            <Button Style="{StaticResource Help}"  Margin="90 5 0 10" Click="remove">
+                                <Image Source="./Images/cross.png"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Window>

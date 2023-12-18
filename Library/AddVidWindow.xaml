@@ -1,0 +1,54 @@
+﻿<Window x:Class="Library.AddVidWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="AddVidWindow" Style="{StaticResource AnotherWindows}" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="./Images/pngegg.png" Width="103" Height="81" Grid.Row="0" Grid.Column="0" Margin="0 0 80 0"></Image>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 30 0 0">
+            <Button Click="Backto"  Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Назад"></Button>
+            <Button Click="Exit"  Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Выход"></Button>
+            <Label Content="Поиск читателя:"/>
+            <TextBox x:Name="searches" Style="{StaticResource MenuSearch}" TextChanged="readersearch"></TextBox>
+        </StackPanel>
+        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Header}" Margin="30 35 0 0" x:Name="titlee">Оформление выдачи</Label>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,34,425,204">
+            <Label>Книга:</Label>
+            <TextBox x:Name="booking" IsEnabled="False"></TextBox>
+            <Line></Line>
+            <Label>Выберите читателя:</Label>
+            <ComboBox ItemsSource="{Binding Readers}" SelectedItem="{Binding Extradition.ReaderNavigation}" x:Name="searchReader">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                                <Run Text="{Binding ReaderName}"/>
+                            <Run Text="{Binding LastName}"/>
+                            <Run Text="{Binding SurName}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Margin="0 30 0 0">Укажите дату выдачи:</Label>
+            <DatePicker x:Name="vidDate" SelectedDate="{Binding DateExtra}"></DatePicker>
+            <Line></Line>
+            <Label>Укажите дату сдачи:</Label>
+            <DatePicker x:Name="backDate" SelectedDate="{Binding DateBack}"></DatePicker>
+            <Line></Line>
+            <StackPanel Orientation="Horizontal" Width="423" HorizontalAlignment="Left" Margin="0 40">
+                <Button Click="adding" Style="{StaticResource OformButton}" Margin="0 0 10 0">Добавить</Button>
+                <Button Click="cancel" Style="{StaticResource OformButton}" Margin="15 0 10 0">Отменить</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

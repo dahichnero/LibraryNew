@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\pngegg.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\change.png" />
+    <None Remove="Images\cross.png" />
+    <None Remove="Images\exit.png" />
+    <None Remove="Images\pngegg.ico" />
+    <None Remove="Images\pngegg.png" />
+    <None Remove="Images\url.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\pngegg.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\url.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\change.png" />
+    <Resource Include="Images\cross.png" />
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\pngegg.ico" />
+    <Resource Include="Images\pngegg.png" />
+  </ItemGroup>
+
+</Project>

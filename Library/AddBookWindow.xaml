@@ -1,0 +1,145 @@
+﻿<Window x:Class="Library.AddBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="AddBookWindow" Style="{StaticResource AnotherWindows}" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="./Images/pngegg.png" Width="103" Height="81" Grid.Row="0" Grid.Column="0" Margin="0 0 80 0"></Image>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 30 0 0">
+            <Button Click="Backto" Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Назад"></Button>
+            <Button Click="Exit" Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Выход"></Button>
+            <Label x:Name="s"></Label>
+            
+        </StackPanel>
+        <Label x:Name="choose" Grid.Row="0" Grid.Column="1" Style="{StaticResource Header}" Margin="30 35 0 0">Добавление книги</Label>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,30,0,25" Orientation="Horizontal">
+            <StackPanel>
+                <Label>ISBN:</Label>
+                <TextBox x:Name="isbnText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.Isbn" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <Label>Название:</Label>
+                <TextBox x:Name="nameText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.BookName" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <Label>Автор:</Label>
+                <TextBox x:Name="authorText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.Author" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <Label>Изображение:</Label>
+                <TextBox x:Name="imageText" Text="{Binding Bookk.ImagePath}"></TextBox>
+                <Line></Line>
+                
+                <Label>Год издания:</Label>
+                <TextBox x:Name="yearText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.YearIzd" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <Label>Количество:</Label>
+                <TextBox x:Name="countText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.Count" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <Label>Цена:</Label>
+                <TextBox x:Name="priceText" Validation.Error="error">
+                    <TextBox.Text>
+                        <Binding Path="Bookk.Price" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Line></Line>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Жанр:</Label>
+                    <ComboBox Style="{StaticResource Choose}" x:Name="genreText" Validation.Error="errors" ItemsSource="{Binding Genres}"  >
+                        <ComboBox.SelectedItem>
+                            <Binding Path="Bookk.GenreiNavigation" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <Run Text="{Binding GenreName}"></Run>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Издательство:</Label>
+                    <ComboBox Style="{StaticResource Choose}" x:Name="izdText" Validation.Error="errors" ItemsSource="{Binding Provisioners}" >
+                        <ComboBox.SelectedItem>
+                            <Binding Path="Bookk.ProvisionerNavigation" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <Run Text="{Binding ProvisionerName}"></Run>
+                                <Run Text="{Binding ProvisionerId}"></Run>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="276" HorizontalAlignment="Left">
+                    <Button x:Name="add" Click="addorupdate" Style="{StaticResource OformButton}" Margin="0 10 10 0">Добавить</Button>
+                    <Button Click="ren" Style="{StaticResource OformButton}" Margin="15 10 10 0">Отменить</Button>
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

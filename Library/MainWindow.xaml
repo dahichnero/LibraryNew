@@ -1,0 +1,25 @@
+﻿<Window x:Class="Library.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="MainWindow" Style="{StaticResource Login}" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Image Source="./Images/pngegg.png" Width="178" Height="146" Margin="0 14 0 28"></Image>
+        <Label Style="{StaticResource LoginLabels}" Margin="55 0 0 0">Логин:</Label>
+        <TextBox x:Name="log" Style="{StaticResource LoginPass}"></TextBox>
+        <Line Style="{StaticResource LoginLine}" Margin="0 0 0 20"></Line>
+        <Label Style="{StaticResource LoginLabels}" Margin="55 0 0 0">Пароль:</Label>
+        <PasswordBox x:Name="pass"></PasswordBox>
+        <Line Style="{StaticResource LoginLine}" Margin="0 0 0 20"></Line>
+        <CheckBox x:Name="isKioskCheckBox" Margin="60 0 0 25">Войти как гость</CheckBox>
+        <StackPanel Orientation="Horizontal" Width="240">
+            <Button Content="Войти" Click="Next" Style="{StaticResource LoginButton}"></Button>
+            <Button Click="Exit" Style="{StaticResource LoginExit}" Margin="10 0 0 0">
+                <Image Source="./Images/exit.png"/>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

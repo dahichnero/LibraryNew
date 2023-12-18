@@ -1,0 +1,80 @@
+﻿<Window x:Class="Library.BookMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="BookMain" Style="{StaticResource AnotherWindows}" WindowStartupLocation="CenterScreen" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}" x:Name="booksList">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="./Images/pngegg.png" Width="103" Height="81" Grid.Row="0" Grid.Column="0" Margin="0 0 80 0"></Image>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 30 0 0">
+            <Button Click="CloseAway" Style="{StaticResource Navigation}" Content="Выход"></Button>
+            <Button x:Name="addingbook" Click="toAddBook" Style="{StaticResource Navigation}" Margin="0 20 0 20" Content="Добавить книгу"></Button>
+            <Button x:Name="addingreader" Click="toAddReader" Style="{StaticResource Navigation}" Margin="0 0 0 20" Content="Добавить читателя"></Button>
+            <Button x:Name="vid" Click="VidB" Style="{StaticResource Navigation}" Content="Выданные книги"></Button>
+            <Button x:Name="readersGo" Click="GoToReaders" Style="{StaticResource Navigation }" Content="Читатели" Margin="0 20 0 0"></Button>
+            
+        </StackPanel>
+        <StackPanel Style="{StaticResource MenuUp}" Grid.Row="0" Grid.Column="1" Margin="0 0 0 30">
+            
+            <StackPanel Orientation="Horizontal">
+                <Label>Поиск:</Label>
+                <TextBox x:Name="searchTextBox" Style="{StaticResource MenuSearch}" TextChanged="search"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Books}" x:Name="allBooks">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#F8F8FF" Margin="0 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="375" />
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="189" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="7" Grid.Column="0">
+                            <TextBlock FontSize="16" TextWrapping="Wrap" >
+                        Название: <Run Text="{Binding BookName}"/>
+                        <LineBreak />
+                        Автор: <Run Text="{Binding Author}"/> 
+                        <LineBreak />
+                        Жанр: <Run Text="{Binding GenreiNavigation.GenreName}"/>
+                        <LineBreak/>
+                        Год издания: <Run Text="{Binding YearIzd}"/>
+                                Количество: <Run Text="{Binding Count}"/>
+                            </TextBlock>
+                            <Button Style="{StaticResource LoginExit}" Click="ShowImage" HorizontalAlignment="Left">
+                                <Image Source="./Images/url.png"/>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="2"   VerticalAlignment="Top" Visibility="{Binding ElementName=booksList, Path=IsLib, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Button Style="{StaticResource Help}" Margin="90 0 0 0" Click="change">
+                                <Image Source="./Images/change.png"/>
+                            </Button>
+                            <Button Style="{StaticResource Help}"  Margin="90 5 0 10" Click="remove">
+                                <Image Source="./Images/cross.png"/>
+                            </Button>
+                            <Button  Click="toAddVid" Style="{StaticResource OformButton}">Оформить выдачу</Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Window>
